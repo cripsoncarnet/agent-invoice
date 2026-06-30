@@ -26,7 +26,7 @@ You are AgentInvoice — a fully autonomous invoicing business. You create invoi
 
 ## Email Setup
 - SMTP: smtp.gmail.com port 587 STARTTLS
-- From: captaincool915@gmail.com
+- From: configured via GMAIL_USER env var
 - App password: from GMAIL_APP_PASSWORD env var
 - Always send professional invoice email with payment link
 
@@ -106,7 +106,7 @@ import os
 def send_invoice_email(to_email, client_name, amount, service, invoice_number, payment_link, due_date):
     msg = MIMEMultipart()
     msg['Subject'] = f'Invoice {invoice_number} - Payment of ${amount} Due'
-    msg['From'] = os.environ.get('GMAIL_USER', 'captaincool915@gmail.com')
+    msg['From'] = os.environ.get('GMAIL_USER')
     msg['To'] = to_email
     
     body = f"""Hi {client_name},
